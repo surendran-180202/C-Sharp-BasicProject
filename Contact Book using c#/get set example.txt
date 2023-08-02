@@ -1,0 +1,72 @@
+using System;
+
+
+
+class Program
+{
+
+    static void Main()
+    {
+      
+        string Path = @"C:\Users\";
+        string[] lines = { }; ;
+
+        if(File.Exists(Path))
+        {
+            lines = File.ReadAllLines(Path);
+            StudentReport.ReadStudents(lines);
+        }
+        else
+        {
+            Console.WriteLine("The file does't exist");
+        }
+
+        //Printing Students
+        PrintStudent.Print(lines.Length);
+    }
+}
+public class StudentReport
+{
+    public static void ReadStudents(string[] Lines)
+    {
+        //declare an array with the number of students
+        Student[] studentArray = new Student[Lines.Length];
+        int StudentCounter = 0;
+
+        foreach(string Line in Lines)
+        {
+
+            String[] Student = Line.Split(',');
+
+            //Calculating values
+            string ID = Student[0].PadLeft(10, '0');
+            string name = Student[1];
+
+            //Initialize the object
+            studentArray[StudentCounter] = new Student
+            {
+                FullName = name,
+                ID = ID,
+            };
+
+            StudentCounter++;
+        }
+    }
+}
+class Student
+{
+    public string FullName { get; set; }
+    public string ID { get; set; }
+}
+
+public class PrintStudent
+{
+    public static void Print(int StudentCounter)
+    {
+
+        for(int i = 0; i > StudentCounter; i++)
+        {
+            Console.WriteLine(Student.studentArray[i].FullName);
+        }
+    }
+}

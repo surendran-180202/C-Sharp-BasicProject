@@ -1,0 +1,255 @@
+
+using System;
+using System.Collections.Generic;
+
+
+namespace contact_book
+{
+    class data
+    {
+        public string name { get; set; }
+        public string phone { get; set; }
+        public string address { get; set; }
+        public string email { get; set; }
+        
+    }
+
+
+    public class create_contact
+    {
+       
+
+        public List<data> data = new List<data>(data);
+        
+        public string[,] contact(string[,] total_user)
+        {
+            data data = new data();
+
+            Console.WriteLine("enter name :");
+            data.name = Console.ReadLine();
+            Console.WriteLine("enter phone :");
+            data.phone = Console.ReadLine();
+            Console.WriteLine("enter address :");
+            data.address = Console.ReadLine();
+            Console.WriteLine("enter email :");
+            data.email = Console.ReadLine();
+            string[] new_user = { data.name, data.phone, data.address, data.email };
+            
+            Console.Write("\n new contact created \n");
+            Console.Write(" ___________________ \n");
+            Console.WriteLine(" name: " + new_user[0] + "\n phone: " + new_user[1] + "\n address: " + new_user[2] + "\n email: " + new_user[3]);
+            Console.WriteLine("\n press enter to continue. . .! \n ");
+            print p = new print();
+            p.print1();
+
+            total_user[3, 0] = data.name;
+            total_user[3, 1] = data.phone;
+            total_user[3, 2] = data.address;
+            total_user[3, 3] = data.email;
+            
+
+            return total_user;
+        }
+
+
+        public void Read(string[,] total_user)
+        {
+            data data = new data();
+            Console.WriteLine(data.name);
+
+
+
+
+
+            Console.WriteLine(" total contact " + total_user.Length / 4 + "\n");
+            for(int i = 0; i < total_user.GetLength(0); i++)
+            {
+                Console.Write("contact: {0} \n", i + 1);
+                for(int j = 0; j < total_user.GetLength(1); j++)
+                {
+                    Console.Write("{0}   ", total_user[i, j]);
+                }
+                Console.WriteLine("\n");
+            }
+            Console.WriteLine("press enter to continue. . .! \n ");
+        }
+
+        public void Update(string[,] total_user)
+        {
+            Console.WriteLine(" total contact " + total_user.Length / 4 + "\n");
+            for(int i = 0; i < total_user.GetLength(0); i++)
+            {
+                Console.Write("contact: {0} \n", i);
+                for(int j = 0; j < total_user.GetLength(1); j++)
+                {
+                    Console.Write("{0}   ", total_user[i, j]);
+                }
+                Console.WriteLine("\n");
+            }
+            Console.WriteLine("\n enter the contact number to edit: ");
+            int a = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("\n select which is edit 0.name 1.phone 2.address 3.email: ");
+            int b = Convert.ToInt32(Console.ReadLine());
+            for(int i = 0; i < total_user.GetLength(0); i++)
+            {
+                for(int j = 0; j < total_user.GetLength(1); j++)
+                {
+                    if(i == a && j == b)
+                    {
+                        Console.Write(total_user[a, b]);
+                        Console.Write("\n enter the updates:   ");
+                        string update_value = Console.ReadLine();
+                        total_user[a, b] = update_value;
+                        break;
+                    }
+                }
+                Console.WriteLine("\n");
+            }
+
+            for(int i = 0; i < total_user.GetLength(0); i++)
+            {
+                Console.Write("contact: {0} \n", i);
+                for(int j = 0; j < total_user.GetLength(1); j++)
+                {
+
+                    Console.Write("{0}   ", total_user[i, j]);
+                }
+                Console.WriteLine("\n");
+            }
+            Console.WriteLine("press enter to continue. . .! \n ");
+        }
+
+
+        public void Delete(string[,] total_user)
+        {
+            Console.WriteLine(" total contact " + total_user.Length / 4 + "\n");
+            for(int i = 0; i < total_user.GetLength(0); i++)
+            {
+                Console.Write("contact: {0} \n", i);
+                for(int j = 0; j < total_user.GetLength(1); j++)
+                {
+                    Console.Write("{0}   ", total_user[i, j]);
+                }
+                Console.WriteLine("\n");
+            }
+            Console.WriteLine("\n enter the contact number to delete");
+            Console.WriteLine("______________________________________ ");
+            int a = Convert.ToInt32(Console.ReadLine());
+            for(int i = 0; i < total_user.GetLength(0); i++)
+            {
+                Console.Write("contact: {0} \n", i);
+                for(int j = 0; j < total_user.GetLength(1); j++)
+                {
+                    if(i == a)
+                    {
+                        continue;
+                    }
+                    Console.Write("{0}  ", total_user[i, j]);
+                }
+                Console.WriteLine("\n");
+            }
+            Console.WriteLine("press enter to continue. . .! \n ");
+        }
+
+
+
+        public void Search(string[,] total_user)
+        {
+            Console.WriteLine("enter the name or number ");
+            string search_str = Console.ReadLine();
+            for(int i = 0; i < total_user.GetLength(0); i++)
+            {
+                if(string.Equals(total_user[i, 0], search_str) || string.Equals(total_user[i, 1], search_str))
+                {
+                    Console.WriteLine("found: " + search_str);
+                    for(int j = 0; j < total_user.GetLength(1); j++)
+                    {
+                        Console.Write("{0}   ", total_user[i, j]);
+                    }
+                    Console.WriteLine("\n");
+                }
+            }
+        }
+    }
+    public class print
+	{
+        public  void print1()
+		{
+
+           data data = new data();
+           
+               
+         
+        }
+	} 
+
+
+    public class main
+    {
+        static void Main(string[] args)
+        {
+            while(true)
+            {
+                create_contact con = new create_contact();
+                data user = new data();
+               
+
+                string[] new_contact = new string[4] { user.name, user.phone, user.address, user.email };
+
+                 string[,] total_user = new string[,] { { "surendran", "8190970043", "24/12,vivegananther street, bodinayakanuer,theni-625513", "surendran18022002@gmail.com" }, { "naveen", "676788766", "435,street,area,city,theni-625531", "naveen@gmail.com" }, { "vj", "123456789", "erg,ergerg,ergerg,", "vj@gmail.com" }, { user.name, user.phone, user.address, user.email } };
+                Console.WriteLine(" 1.Create \n 2.Read \n 3.Update \n 4.Delete \n 5.Search \n \n  enter your choice: \n  ____________________");
+
+                string choice = Console.ReadLine();
+                int number = Convert.ToInt32(choice);
+
+                 switch(number)
+                 {
+                    case 1:
+                        con.contact(total_user);
+                        break;
+                    case 2:
+                        con.Read(total_user);
+                        break;
+                    case 3:
+                        con.Update(total_user);
+                        break;
+                    case 4:
+                        con.Delete(total_user);
+                        break;
+
+                    case 5:
+                        con.Search(total_user);
+                        break;
+                    case 6:
+                        
+                        break;
+                    default:
+                        Console.WriteLine("invalide number!! pls enter the crt number  ");
+                        break;
+                }
+
+                Console.ReadLine();
+            }
+        }
+    }
+}
+
+
+
+/*
+ Contact Book
+
+Operations:
+
+Create
+Read
+Update
+Delete
+Search
+
+Design
+
+   1. Contact Book Fields
+   2. Methods
+   3. Flow diagram - Algorithm
+ */
